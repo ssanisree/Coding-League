@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function Battle() {
   const bulletPoints = [
     'Matched by skill level for fair fights',
@@ -31,7 +33,7 @@ export default function Battle() {
           </p>
 
           {/* Bullets */}
-          <ul className="list-none space-y-2">
+          <ul className="list-none space-y-2 mb-8">
             {bulletPoints.map((point, idx) => (
               <li
                 key={idx}
@@ -42,6 +44,14 @@ export default function Battle() {
               </li>
             ))}
           </ul>
+
+          {/* CTA Button */}
+          <Link 
+            to="/battle" 
+            className="inline-block font-mono text-xs font-bold uppercase tracking-wider px-6 py-3 rounded border-2 border-ca-dark-gold bg-ca-dark-gold text-ca-dark-bg cursor-pointer hover:bg-opacity-90 transition-all"
+          >
+            Start Battle Now →
+          </Link>
         </div>
 
         {/* Right side - Battle Card */}

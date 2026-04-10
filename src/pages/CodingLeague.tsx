@@ -7,7 +7,7 @@ export default function CodingLeague({ theme, onThemeToggle }: { theme: 'light' 
   return (
     <>
       <Navbar theme={theme} onThemeToggle={onThemeToggle} />
-      <div className="min-h-screen pt-20 px-10 bg-ca-dark-bg text-ca-dark-ink">
+      <div className="min-h-screen pt-16 px-10 bg-ca-dark-bg text-ca-dark-ink">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-4xl font-black mb-2 text-white">1v1 Coding Battles</h1>
           <p className="text-gray-500 font-mono text-sm mb-10">Real-time head-to-head duels. Same problem, live timer, no excuses.</p>

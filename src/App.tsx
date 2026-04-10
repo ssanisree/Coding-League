@@ -15,6 +15,7 @@ import DSA from './pages/DSA'
 import CodingLeague from './pages/CodingLeague'
 import LeaderboardPage from './pages/LeaderboardPage'
 import AIDebugMode from './pages/AIDebugMode'
+import BattlePage from './pages/BattlePage'
 
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')
@@ -80,6 +81,7 @@ function App() {
           <Route path="/coding-league" element={<CodingLeague theme={theme} onThemeToggle={toggleTheme} />} />
           <Route path="/leaderboard" element={<LeaderboardPage theme={theme} onThemeToggle={toggleTheme} />} />
           <Route path="/ai-debug" element={<AIDebugMode theme={theme} onThemeToggle={toggleTheme} />} />
+          <Route path="/battle" element={<BattlePage theme={theme} onThemeToggle={toggleTheme} />} />
         </Routes>
       </div>
     </Router>

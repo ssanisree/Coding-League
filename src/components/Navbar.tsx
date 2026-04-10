@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { AuthModal } from './AuthModal'
 
 interface NavbarProps {
@@ -10,30 +10,96 @@ interface NavbarProps {
 export default function Navbar({ theme, onThemeToggle }: NavbarProps) {
   const [showAuth, setShowAuth] = useState(false)
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login')
+  const location = useLocation()
 
   const handleAuthOpen = (mode: 'login' | 'signup') => {
     setAuthMode(mode)
     setShowAuth(true)
   }
 
+  const isActive = (path: string) => {
+    return location.pathname === path || location.pathname.startsWith(path + '/')
+  }
+
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b h-14" style={{ background: 'var(--nav-bg)', borderColor: 'var(--nav-border)' }}>
-        <div className="max-w-7xl mx-auto px-10 h-full flex items-center justify-between gap-5">
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b bg-ca-dark-bg" style={{ borderColor: 'var(--nav-border)' }}>
+        <div className="max-w-full mx-auto px-10 h-16 flex items-center justify-between gap-8">
           {/* Logo */}
           <Link to="/" className="font-mono text-base font-bold flex-shrink-0" style={{ color: 'var(--gold)' }}>
             Coding<span style={{ color: '#FFFFFF' }}>League</span>
           </Link>
 
-          {/* Nav Links */}
-          <ul className="hidden md:flex items-center gap-7 list-none">
-            <li><Link to="/dsa" className="font-mono text-xs font-semibold uppercase tracking-wider transition-colors hover:opacity-100" style={{ color: 'var(--nav-link)' }}>DSA</Link></li>
-            <li><Link to="/coding-league" className="font-mono text-xs font-semibold uppercase tracking-wider transition-colors hover:opacity-100" style={{ color: 'var(--nav-link)' }}>1v1 Coding League</Link></li>
-            <li><Link to="/leaderboard" className="font-mono text-xs font-semibold uppercase tracking-wider transition-colors hover:opacity-100" style={{ color: 'var(--nav-link)' }}>Leaderboard</Link></li>
-            <li><Link to="/ai-debug" className="font-mono text-xs font-semibold uppercase tracking-wider transition-colors hover:opacity-100" style={{ color: 'var(--nav-link)' }}>AI Debug Mode</Link></li>
-          </ul>
+          {/* Navigation Links - Center */}
+          <div className="flex items-center gap-12">
+            <Link
+              to="/coding-league"
+              className={`font-mono text-xs font-bold uppercase tracking-wider border-b-2 transition-all whitespace-nowrap ${
+                isActive('/coding-league') || isActive('/dashboard')
+                  ? 'border-b-ca-dark-gold'
+                  : 'border-b-transparent'
+              }`}
+              style={{
+                color: isActive('/coding-league') || isActive('/dashboard') ? 'var(--gold)' : 'var(--nav-link)'
+              }}
+            >
+              Dashboard
+            </Link>
+            <Link
+              to="/battle"
+              className={`font-mono text-xs font-bold uppercase tracking-wider border-b-2 transition-all whitespace-nowrap ${
+                isActive('/battle')
+                  ? 'border-b-ca-dark-gold'
+                  : 'border-b-transparent'
+              }`}
+              style={{
+                color: isActive('/battle') ? 'var(--gold)' : 'var(--nav-link)'
+              }}
+            >
+              Battles
+            </Link>
+            <Link
+              to="/dsa"
+              className={`font-mono text-xs font-bold uppercase tracking-wider border-b-2 transition-all whitespace-nowrap ${
+                isActive('/dsa')
+                  ? 'border-b-ca-dark-gold'
+                  : 'border-b-transparent'
+              }`}
+              style={{
+                color: isActive('/dsa') ? 'var(--gold)' : 'var(--nav-link)'
+              }}
+            >
+              Skill Map
+            </Link>
+            <Link
+              to="/ai-debug"
+              className={`font-mono text-xs font-bold uppercase tracking-wider border-b-2 transition-all whitespace-nowrap ${
+                isActive('/ai-debug')
+                  ? 'border-b-ca-dark-gold'
+                  : 'border-b-transparent'
+              }`}
+              style={{
+                color: isActive('/ai-debug') ? 'var(--gold)' : 'var(--nav-link)'
+              }}
+            >
+              Debug Mode
+            </Link>
+            <Link
+              to="/leaderboard"
+              className={`font-mono text-xs font-bold uppercase tracking-wider border-b-2 transition-all whitespace-nowrap ${
+                isActive('/leaderboard')
+                  ? 'border-b-ca-dark-gold'
+                  : 'border-b-transparent'
+              }`}
+              style={{
+                color: isActive('/leaderboard') ? 'var(--gold)' : 'var(--nav-link)'
+              }}
+            >
+              Leaderboard
+            </Link>
+          </div>
 
-          {/* Right section */}
+          {/* Right section - Theme & Auth */}
           <div className="flex items-center gap-3 flex-shrink-0">
             {/* Theme toggle */}
             <button
@@ -78,7 +144,7 @@ export default function Navbar({ theme, onThemeToggle }: NavbarProps) {
                 color: 'var(--nav-bg)'
               }}
             >
-              Sign Up ↗
+              Sign Up
             </button>
           </div>
         </div>

@@ -15,7 +15,7 @@ export default function LeaderboardPage({ theme, onThemeToggle }: { theme: 'ligh
   return (
     <>
       <Navbar theme={theme} onThemeToggle={onThemeToggle} />
-      <div className="min-h-screen pt-20 px-10 bg-ca-dark-bg text-ca-dark-ink">
+      <div className="min-h-screen pt-16 px-10 bg-ca-dark-bg text-ca-dark-ink">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-black mb-2 text-white">Leaderboard</h1>
           <p className="text-gray-500 font-mono text-sm mb-10">Your rank. Your reputation. Rise through the tiers.</p>
