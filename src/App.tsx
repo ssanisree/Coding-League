@@ -10,22 +10,26 @@ import Skills from './components/Skills'
 import Testimonials from './components/Testimonials'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
+import type { User } from './lib/api'
 
 function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
-
-  useEffect(() => {
-    // Set initial theme from localStorage or default to dark
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
-    const initialTheme = savedTheme || 'dark'
+    return savedTheme || 'dark'
+  })
+  const [user, setUser] = useState<User | null>(() => {
+    const savedUser = localStorage.getItem('coding-league-user')
+    if (!savedUser) return null
 
-    setTheme(initialTheme)
-    document.documentElement.setAttribute('data-theme', initialTheme)
-    document.documentElement.style.colorScheme = initialTheme
-  }, [])
+    try {
+      return JSON.parse(savedUser) as User
+    } catch {
+      localStorage.removeItem('coding-league-user')
+      return null
+    }
+  })
 
   useEffect(() => {
-    // Update data-theme attribute when theme changes
     document.documentElement.setAttribute('data-theme', theme)
     document.documentElement.style.colorScheme = theme
     localStorage.setItem('theme', theme)
@@ -53,9 +57,27 @@ function App() {
     setTheme(newTheme)
   }
 
+  const handleAuthSuccess = (nextUser: User, token: string) => {
+    setUser(nextUser)
+    localStorage.setItem('coding-league-user', JSON.stringify(nextUser))
+    localStorage.setItem('coding-league-token', token)
+  }
+
+  const handleLogout = () => {
+    setUser(null)
+    localStorage.removeItem('coding-league-user')
+    localStorage.removeItem('coding-league-token')
+  }
+
   return (
     <div className="min-h-screen">
-      <Navbar theme={theme} onThemeToggle={toggleTheme} />
+      <Navbar
+        theme={theme}
+        user={user}
+        onThemeToggle={toggleTheme}
+        onAuthSuccess={handleAuthSuccess}
+        onLogout={handleLogout}
+      />
       <Hero />
       <HowItWorks />
       <Features />
