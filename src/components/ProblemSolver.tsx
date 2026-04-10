@@ -375,9 +375,6 @@ export default function ProblemSolver({ problem, onClose, onSolve }: ProblemSolv
               <span className="text-xs font-mono text-gray-500">Language:</span>
               <select className="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-xs text-white font-mono">
                 <option>Python</option>
-                <option>JavaScript</option>
-                <option>Java</option>
-                <option>C++</option>
               </select>
             </div>
 
