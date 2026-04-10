@@ -246,6 +246,70 @@ export default function DSA({ theme, onThemeToggle }: { theme: 'light' | 'dark';
     return grouped
   }
 
+  // Code examples for each topic
+  const codeExamples: { [key: string]: JSX.Element } = {
+    'Arrays': (
+      <div className="font-mono text-xs leading-relaxed text-gray-300">
+        <div><span className="text-purple-400">def</span> <span className="text-blue-400">twoSum</span>(<span className="text-yellow-400">nums</span>, <span className="text-yellow-400">target</span>):</div>
+        <div>&nbsp;&nbsp;<span className="text-yellow-400">seen</span> = {'{}'}</div>
+        <div>&nbsp;&nbsp;<span className="text-purple-400">for</span> <span className="text-yellow-400">i</span>, <span className="text-yellow-400">num</span> <span className="text-purple-400">in</span> <span className="text-blue-400">enumerate</span>(<span className="text-yellow-400">nums</span>):</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-yellow-400">complement</span> = <span className="text-yellow-400">target</span> - <span className="text-yellow-400">num</span></div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if</span> <span className="text-yellow-400">complement</span> <span className="text-purple-400">in</span> <span className="text-yellow-400">seen</span>:</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">return</span> [<span className="text-yellow-400">seen</span>[<span className="text-yellow-400">complement</span>], <span className="text-yellow-400">i</span>]</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-yellow-400">seen</span>[<span className="text-yellow-400">num</span>] = <span className="text-yellow-400">i</span></div>
+      </div>
+    ),
+    'Strings': (
+      <div className="font-mono text-xs leading-relaxed text-gray-300">
+        <div><span className="text-purple-400">def</span> <span className="text-blue-400">isPalindrome</span>(<span className="text-yellow-400">s</span>):</div>
+        <div>&nbsp;&nbsp;<span className="text-yellow-400">left</span>, <span className="text-yellow-400">right</span> = 0, <span className="text-cyan-400">len</span>(<span className="text-yellow-400">s</span>) - 1</div>
+        <div>&nbsp;&nbsp;<span className="text-purple-400">while</span> <span className="text-yellow-400">left</span> &lt; <span className="text-yellow-400">right</span>:</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if</span> <span className="text-yellow-400">s</span>[<span className="text-yellow-400">left</span>] != <span className="text-yellow-400">s</span>[<span className="text-yellow-400">right</span>]:</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">return</span> <span className="text-green-400">False</span></div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-yellow-400">left</span> += 1</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-yellow-400">right</span> -= 1</div>
+        <div>&nbsp;&nbsp;<span className="text-purple-400">return</span> <span className="text-green-400">True</span></div>
+      </div>
+    ),
+    'Linked Lists': (
+      <div className="font-mono text-xs leading-relaxed text-gray-300">
+        <div><span className="text-purple-400">def</span> <span className="text-blue-400">reverseList</span>(<span className="text-yellow-400">head</span>):</div>
+        <div>&nbsp;&nbsp;<span className="text-yellow-400">prev</span> = <span className="text-cyan-400">None</span></div>
+        <div>&nbsp;&nbsp;<span className="text-yellow-400">curr</span> = <span className="text-yellow-400">head</span></div>
+        <div>&nbsp;&nbsp;<span className="text-purple-400">while</span> <span className="text-yellow-400">curr</span>:</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-yellow-400">next_temp</span> = <span className="text-yellow-400">curr</span>.next</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-yellow-400">curr</span>.next = <span className="text-yellow-400">prev</span></div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-yellow-400">prev</span> = <span className="text-yellow-400">curr</span></div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-yellow-400">curr</span> = <span className="text-yellow-400">next_temp</span></div>
+        <div>&nbsp;&nbsp;<span className="text-purple-400">return</span> <span className="text-yellow-400">prev</span></div>
+      </div>
+    ),
+    'Trees': (
+      <div className="font-mono text-xs leading-relaxed text-gray-300">
+        <div><span className="text-purple-400">def</span> <span className="text-blue-400">maxDepth</span>(<span className="text-yellow-400">root</span>):</div>
+        <div>&nbsp;&nbsp;<span className="text-purple-400">if</span> <span className="text-purple-400">not</span> <span className="text-yellow-400">root</span>:</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">return</span> 0</div>
+        <div>&nbsp;&nbsp;<span className="text-yellow-400">left</span> = <span className="text-blue-400">maxDepth</span>(<span className="text-yellow-400">root</span>.left)</div>
+        <div>&nbsp;&nbsp;<span className="text-yellow-400">right</span> = <span className="text-blue-400">maxDepth</span>(<span className="text-yellow-400">root</span>.right)</div>
+        <div>&nbsp;&nbsp;<span className="text-purple-400">return</span> 1 + <span className="text-cyan-400">max</span>(<span className="text-yellow-400">left</span>, <span className="text-yellow-400">right</span>)</div>
+      </div>
+    ),
+    'Graphs': (
+      <div className="font-mono text-xs leading-relaxed text-gray-300">
+        <div><span className="text-purple-400">def</span> <span className="text-blue-400">numIslands</span>(<span className="text-yellow-400">grid</span>):</div>
+        <div>&nbsp;&nbsp;<span className="text-purple-400">if</span> <span className="text-purple-400">not</span> <span className="text-yellow-400">grid</span>:</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">return</span> 0</div>
+        <div>&nbsp;&nbsp;<span className="text-yellow-400">count</span> = 0</div>
+        <div>&nbsp;&nbsp;<span className="text-purple-400">for</span> <span className="text-yellow-400">i</span> <span className="text-purple-400">in</span> <span className="text-cyan-404">range</span>(<span className="text-cyan-404">len</span>(<span className="text-yellow-400">grid</span>)):</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">for</span> <span className="text-yellow-400">j</span> <span className="text-purple-400">in</span> <span className="text-cyan-404">range</span>(<span className="text-cyan-404">len</span>(<span className="text-yellow-400">grid</span>[0])):</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">if</span> <span className="text-yellow-400">grid</span>[<span className="text-yellow-400">i</span>][<span className="text-yellow-400">j</span>] == <span className="text-green-400">'1'</span>:</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-yellow-400">dfs</span>(<span className="text-yellow-400">grid</span>, <span className="text-yellow-400">i</span>, <span className="text-yellow-400">j</span>)</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-yellow-400">count</span> += 1</div>
+        <div>&nbsp;&nbsp;<span className="text-purple-400">return</span> <span className="text-yellow-400">count</span></div>
+      </div>
+    ),
+  }
+
   return (
     <>
       <Navbar theme={theme} onThemeToggle={onThemeToggle} />
@@ -371,6 +435,43 @@ export default function DSA({ theme, onThemeToggle }: { theme: 'light' | 'dark';
                   <p className="text-gray-400 font-mono text-xs">Coming soon...</p>
                 </div>
               )}
+
+              {/* Code Example Section */}
+              <div className="mt-16 pt-8 border-t border-dashed border-gray-700">
+                <h4 className="text-lg font-black mb-4 text-white">Example Solution - {selectedTopic}</h4>
+                <div className="bg-ca-dark-bg2 border border-gray-700 rounded-lg overflow-hidden">
+                  {/* Editor Header */}
+                  <div className="bg-ca-dark-bg px-6 py-3 border-b border-gray-700 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                      <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <span className="text-xs font-mono text-gray-500">solution.py</span>
+                  </div>
+                  
+                  {/* Code Content */}
+                  <div className="p-6 overflow-x-auto">
+                    {codeExamples[selectedTopic] || (
+                      <div className="text-gray-500 font-mono text-sm">
+                        No example available for this topic
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Hint Section */}
+                <div className="mt-6 p-6 bg-ca-dark-white border border-ca-dark-bg2 rounded-lg">
+                  <h5 className="text-white font-bold mb-3 text-base">💡 Step-by-Step Hints</h5>
+                  <div className="space-y-2">
+                    <div className="text-sm text-gray-400 font-mono">
+                      <div className="mb-2"><span className="text-ca-dark-gold">▸</span> What data structure would help track seen elements?</div>
+                      <div className="mb-2"><span className="text-ca-dark-gold">▸</span> How can you optimize from O(n²) to O(n)?</div>
+                      <div><span className="text-ca-dark-gold">▸</span> What's the complement we're looking for?</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </div>

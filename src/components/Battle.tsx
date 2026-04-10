@@ -93,14 +93,68 @@ export default function Battle() {
 
             {/* Editor side */}
             <div className="bg-ca-dark-bg2 p-4">
-              <div className="font-mono text-xs uppercase tracking-wider text-gray-600 mb-2">Editor</div>
-              <div className="font-mono text-xs leading-relaxed text-gray-300">
-                <span className="text-purple-400">def</span> <span className="text-blue-400">levelOrder</span>(<span className="text-yellow-400">root</span>):<br />
-                &nbsp;&nbsp;<span className="text-yellow-400">queue</span> = [root]<br />
-                &nbsp;&nbsp;<span className="text-yellow-400">result</span> = []<br />
-                &nbsp;&nbsp;<span className="text-purple-400">while</span> <span className="text-yellow-400">queue</span>:<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-yellow-400">level</span> = []<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;...
+              <div className="font-mono text-xs uppercase tracking-wider text-gray-600 mb-3">Editor</div>
+              <div className="font-mono text-xs leading-relaxed text-gray-300 bg-ca-dark-bg p-3 rounded border border-gray-700">
+                {/* Line 1 */}
+                <div className="flex gap-3">
+                  <span className="text-gray-600 select-none w-6 text-right">01</span>
+                  <span><span className="text-purple-400">const</span> <span className="text-yellow-400">protocol</span> = <span className="text-cyan-400">require</span>(<span className="text-green-400">'@stealth/core'</span>);</span>
+                </div>
+                {/* Line 2 */}
+                <div className="flex gap-3">
+                  <span className="text-gray-600 select-none w-6 text-right">02</span>
+                  <span><span className="text-purple-400">const</span> {'{'}  <span className="text-yellow-400">analyze</span>  {'}'} = <span className="text-yellow-400">protocol</span>;</span>
+                </div>
+                {/* Line 3 */}
+                <div className="flex gap-3">
+                  <span className="text-gray-600 select-none w-6 text-right">03</span>
+                  <span></span>
+                </div>
+                {/* Line 4 */}
+                <div className="flex gap-3">
+                  <span className="text-gray-600 select-none w-6 text-right">04</span>
+                  <span><span className="text-purple-400">async</span> <span className="text-purple-400">function</span> <span className="text-blue-400">initializeSync</span>() {'{'}  </span>
+                </div>
+                {/* Line 5 */}
+                <div className="flex gap-3">
+                  <span className="text-gray-600 select-none w-6 text-right">05</span>
+                  <span>&nbsp;&nbsp;<span className="text-purple-400">try</span> {'{'}  </span>
+                </div>
+                {/* Line 6 */}
+                <div className="flex gap-3">
+                  <span className="text-gray-600 select-none w-6 text-right">06</span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">await</span> <span className="text-yellow-400">analyze</span>.<span className="text-blue-400">handshake</span>();</span>
+                </div>
+                {/* Line 7 */}
+                <div className="flex gap-3">
+                  <span className="text-gray-600 select-none w-6 text-right">07</span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-cyan-400">console</span>.<span className="text-blue-400">log</span>(<span className="text-green-400">'System Ready'</span>);</span>
+                </div>
+                {/* Line 8 */}
+                <div className="flex gap-3">
+                  <span className="text-gray-600 select-none w-6 text-right">08</span>
+                  <span>&nbsp;&nbsp;{'}'}</span>
+                </div>
+                {/* Line 9 */}
+                <div className="flex gap-3">
+                  <span className="text-gray-600 select-none w-6 text-right">09</span>
+                  <span>&nbsp;&nbsp;<span className="text-purple-400">catch</span> (e) {'{'}  </span>
+                </div>
+                {/* Line 10 */}
+                <div className="flex gap-3">
+                  <span className="text-gray-600 select-none w-6 text-right">10</span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-purple-400">throw</span> <span className="text-purple-400">new</span> <span className="text-blue-400">Error</span>(<span className="text-green-400">'AUTH_FAILED'</span>);</span>
+                </div>
+                {/* Line 11 */}
+                <div className="flex gap-3">
+                  <span className="text-gray-600 select-none w-6 text-right">11</span>
+                  <span>&nbsp;&nbsp;{'}'}</span>
+                </div>
+                {/* Line 12 */}
+                <div className="flex gap-3">
+                  <span className="text-gray-600 select-none w-6 text-right">12</span>
+                  <span>{'}'}</span>
+                </div>
               </div>
               <div className="mt-3.5 text-right">
                 <button className="font-mono text-xs font-bold uppercase tracking-wider px-4 py-1.75 rounded bg-ca-dark-gold text-ca-dark-bg cursor-pointer hover:opacity-90">

@@ -33,14 +33,14 @@ export default function Navbar({ theme, onThemeToggle }: NavbarProps) {
           {/* Navigation Links - Center */}
           <div className="flex items-center gap-12">
             <Link
-              to="/coding-league"
+              to="/dashboard"
               className={`font-mono text-xs font-bold uppercase tracking-wider border-b-2 transition-all whitespace-nowrap ${
-                isActive('/coding-league') || isActive('/dashboard')
+                isActive('/dashboard')
                   ? 'border-b-ca-dark-gold'
                   : 'border-b-transparent'
               }`}
               style={{
-                color: isActive('/coding-league') || isActive('/dashboard') ? 'var(--gold)' : 'var(--nav-link)'
+                color: isActive('/dashboard') ? 'var(--gold)' : 'var(--nav-link)'
               }}
             >
               Dashboard

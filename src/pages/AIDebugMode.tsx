@@ -22,6 +22,56 @@ export default function AIDebugMode({ theme, onThemeToggle }: { theme: 'light' |
         self.inject_stream(self.buffer[:10])
         self.buffer.clear()`
 
+  // Syntax highlighting for Python code
+  const highlightPythonCode = (line: string) => {
+    const keywords = ['class', 'def', 'if', 'for', 'return', 'import', 'from', 'in', 'self', 'True', 'False', 'None']
+    const builtins = ['len', 'range', 'append', 'clear', 'enumerate', 'print', 'str', 'int']
+    
+    let result: (JSX.Element | string)[] = []
+    let remaining = line
+    let key = 0
+    
+    // Match string literals
+    const stringMatch = remaining.match(/(['"])([^'"]*)\1/)
+    if (stringMatch) {
+      const before = remaining.substring(0, stringMatch.index)
+      const stringPart = stringMatch[0]
+      const after = remaining.substring(stringMatch.index! + stringMatch[0].length)
+      
+      result.push(before)
+      result.push(<span key={key++} className="text-green-400">{stringPart}</span>)
+      
+      for (const word of after.split(/(\s+|[\(\)\[\]{}:,.])/)) {
+        if (!word || /^\s+$/.test(word)) {
+          result.push(word)
+        } else if (keywords.includes(word)) {
+          result.push(<span key={key++} className="text-purple-400">{word}</span>)
+        } else if (builtins.includes(word)) {
+          result.push(<span key={key++} className="text-cyan-400">{word}</span>)
+        } else {
+          result.push(word)
+        }
+      }
+    } else {
+      for (const word of line.split(/(\s+|[\(\)\[\]{}:,.])/)) {
+        if (!word || /^\s+$/.test(word)) {
+          result.push(word)
+        } else if (keywords.includes(word)) {
+          result.push(<span key={key++} className="text-purple-400">{word}</span>)
+        } else if (builtins.includes(word)) {
+          result.push(<span key={key++} className="text-cyan-400">{word}</span>)
+        } else if (/^[A-Z]/.test(word)) {
+          result.push(<span key={key++} className="text-blue-400">{word}</span>)
+        } else if (/^\d+/.test(word)) {
+          result.push(<span key={key++} className="text-green-400">{word}</span>)
+        } else {
+          result.push(word)
+        }
+      }
+    }
+    return result
+  }
+
   const thinkingSteps = [
     {
       step: '01',
@@ -67,9 +117,9 @@ export default function AIDebugMode({ theme, onThemeToggle }: { theme: 'light' |
               </div>
               <div className="p-4 bg-ca-dark-bg2 font-mono text-xs leading-relaxed text-gray-300 max-h-96 overflow-y-auto">
                 {code.split('\n').map((line, idx) => (
-                  <div key={idx} className="flex gap-4 hover:bg-gray-900 hover:bg-opacity-30">
+                  <div key={idx} className={`flex gap-4 hover:bg-gray-900 hover:bg-opacity-30 ${idx === 10 ? 'bg-red-900 bg-opacity-20' : ''}`}>
                     <span className="text-gray-600 select-none flex-shrink-0">{String(idx + 1).padStart(2, '0')}</span>
-                    <span className={idx === 10 ? 'text-red-400' : ''}>{line}</span>
+                    <span className={idx === 10 ? 'text-red-400' : ''}>{highlightPythonCode(line)}</span>
                   </div>
                 ))}
               </div>
