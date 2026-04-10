@@ -5,7 +5,7 @@ interface AuthModalProps {
   mode: 'login' | 'signup'
   onClose: () => void
   onSwitchMode: (mode: 'login' | 'signup') => void
-  onAuthSuccess: (user: User, token: string) => void
+  onAuthSuccess?: (user: User, token: string) => void
 }
 
 export function AuthModal({ mode, onClose, onSwitchMode, onAuthSuccess }: AuthModalProps) {
@@ -34,7 +34,7 @@ export function AuthModal({ mode, onClose, onSwitchMode, onAuthSuccess }: AuthMo
           ? await login({ email, password })
           : await signup({ name, email, college, password })
 
-      onAuthSuccess(response.user, response.token)
+      onAuthSuccess?.(response.user, response.token)
     } catch (caughtError) {
       setError(caughtError instanceof Error ? caughtError.message : 'Authentication failed.')
     } finally {

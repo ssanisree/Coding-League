@@ -1,37 +1,103 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { AuthModal } from './AuthModal'
 import type { User } from '../lib/api'
 
 interface NavbarProps {
   theme: 'light' | 'dark'
-  user: User | null
+  user?: User | null
   onThemeToggle: () => void
-  onAuthSuccess: (user: User, token: string) => void
-  onLogout: () => void
+  onAuthSuccess?: (user: User, token: string) => void
+  onLogout?: () => void
 }
 
-export default function Navbar({ theme, user, onThemeToggle, onAuthSuccess, onLogout }: NavbarProps) {
+export default function Navbar({
+  theme,
+  user = null,
+  onThemeToggle,
+  onAuthSuccess,
+  onLogout,
+}: NavbarProps) {
   const [showAuth, setShowAuth] = useState(false)
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login')
+  const location = useLocation()
 
   const handleAuthOpen = (mode: 'login' | 'signup') => {
     setAuthMode(mode)
     setShowAuth(true)
   }
 
+  const isActive = (path: string) => {
+    return location.pathname === path || location.pathname.startsWith(path + '/')
+  }
+
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b h-14" style={{ background: 'var(--nav-bg)', borderColor: 'var(--nav-border)' }}>
-        <div className="max-w-7xl mx-auto px-10 h-full flex items-center justify-between gap-5">
-          <a href="#" className="font-mono text-base font-bold flex-shrink-0" style={{ color: 'var(--gold)' }}>
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b bg-ca-dark-bg" style={{ borderColor: 'var(--nav-border)' }}>
+        <div className="max-w-full mx-auto px-10 h-16 flex items-center justify-between gap-8">
+          <Link to="/" className="font-mono text-base font-bold flex-shrink-0" style={{ color: 'var(--gold)' }}>
             Coding<span style={{ color: '#FFFFFF' }}>League</span>
-          </a>
+          </Link>
 
-          <ul className="hidden md:flex items-center gap-7 list-none">
-            <li><a href="#skills" className="font-mono text-xs font-semibold uppercase tracking-wider transition-colors hover:opacity-100" style={{ color: 'var(--nav-link)' }}>DSA</a></li>
-            <li><a href="#battle" className="font-mono text-xs font-semibold uppercase tracking-wider transition-colors hover:opacity-100" style={{ color: 'var(--nav-link)' }}>1v1 Coding League</a></li>
-            <li><a href="#leaderboard" className="font-mono text-xs font-semibold uppercase tracking-wider transition-colors hover:opacity-100" style={{ color: 'var(--nav-link)' }}>Leaderboard</a></li>
-          </ul>
+          <div className="flex items-center gap-12">
+            <Link
+              to="/coding-league"
+              className={`font-mono text-xs font-bold uppercase tracking-wider border-b-2 transition-all whitespace-nowrap ${
+                isActive('/coding-league') || isActive('/dashboard')
+                  ? 'border-b-ca-dark-gold'
+                  : 'border-b-transparent'
+              }`}
+              style={{
+                color: isActive('/coding-league') || isActive('/dashboard') ? 'var(--gold)' : 'var(--nav-link)',
+              }}
+            >
+              Dashboard
+            </Link>
+            <Link
+              to="/battle"
+              className={`font-mono text-xs font-bold uppercase tracking-wider border-b-2 transition-all whitespace-nowrap ${
+                isActive('/battle') ? 'border-b-ca-dark-gold' : 'border-b-transparent'
+              }`}
+              style={{
+                color: isActive('/battle') ? 'var(--gold)' : 'var(--nav-link)',
+              }}
+            >
+              Battles
+            </Link>
+            <Link
+              to="/dsa"
+              className={`font-mono text-xs font-bold uppercase tracking-wider border-b-2 transition-all whitespace-nowrap ${
+                isActive('/dsa') ? 'border-b-ca-dark-gold' : 'border-b-transparent'
+              }`}
+              style={{
+                color: isActive('/dsa') ? 'var(--gold)' : 'var(--nav-link)',
+              }}
+            >
+              Skill Map
+            </Link>
+            <Link
+              to="/ai-debug"
+              className={`font-mono text-xs font-bold uppercase tracking-wider border-b-2 transition-all whitespace-nowrap ${
+                isActive('/ai-debug') ? 'border-b-ca-dark-gold' : 'border-b-transparent'
+              }`}
+              style={{
+                color: isActive('/ai-debug') ? 'var(--gold)' : 'var(--nav-link)',
+              }}
+            >
+              Debug Mode
+            </Link>
+            <Link
+              to="/leaderboard"
+              className={`font-mono text-xs font-bold uppercase tracking-wider border-b-2 transition-all whitespace-nowrap ${
+                isActive('/leaderboard') ? 'border-b-ca-dark-gold' : 'border-b-transparent'
+              }`}
+              style={{
+                color: isActive('/leaderboard') ? 'var(--gold)' : 'var(--nav-link)',
+              }}
+            >
+              Leaderboard
+            </Link>
+          </div>
 
           <div className="flex items-center gap-3 flex-shrink-0">
             <button
@@ -57,8 +123,8 @@ export default function Navbar({ theme, user, onThemeToggle, onAuthSuccess, onLo
 
             {user ? (
               <>
-                <a
-                  href="#leaderboard"
+                <Link
+                  to="/leaderboard"
                   className="font-mono text-xs font-bold uppercase tracking-wider px-5 py-2 border rounded transition-colors"
                   style={{
                     borderColor: 'var(--gold)',
@@ -67,9 +133,9 @@ export default function Navbar({ theme, user, onThemeToggle, onAuthSuccess, onLo
                   }}
                 >
                   {user.name.split(' ')[0]} · {user.xp} XP
-                </a>
+                </Link>
                 <button
-                  onClick={onLogout}
+                  onClick={() => onLogout?.()}
                   className="font-mono text-xs font-bold uppercase tracking-wider px-5 py-2 border rounded transition-colors"
                   style={{
                     borderColor: 'var(--border)',
@@ -116,7 +182,7 @@ export default function Navbar({ theme, user, onThemeToggle, onAuthSuccess, onLo
           onClose={() => setShowAuth(false)}
           onSwitchMode={setAuthMode}
           onAuthSuccess={(nextUser, token) => {
-            onAuthSuccess(nextUser, token)
+            onAuthSuccess?.(nextUser, token)
             setShowAuth(false)
           }}
         />

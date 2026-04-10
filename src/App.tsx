@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -10,6 +11,11 @@ import Skills from './components/Skills'
 import Testimonials from './components/Testimonials'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
+import DSA from './pages/DSA'
+import CodingLeague from './pages/CodingLeague'
+import LeaderboardPage from './pages/LeaderboardPage'
+import AIDebugMode from './pages/AIDebugMode'
+import BattlePage from './pages/BattlePage'
 import type { User } from './lib/api'
 
 function App() {
@@ -36,7 +42,6 @@ function App() {
   }, [theme])
 
   useEffect(() => {
-    // Intersection Observer for reveal animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -69,25 +74,43 @@ function App() {
     localStorage.removeItem('coding-league-token')
   }
 
+  const navbarProps = {
+    theme,
+    user,
+    onThemeToggle: toggleTheme,
+    onAuthSuccess: handleAuthSuccess,
+    onLogout: handleLogout,
+  }
+
   return (
-    <div className="min-h-screen">
-      <Navbar
-        theme={theme}
-        user={user}
-        onThemeToggle={toggleTheme}
-        onAuthSuccess={handleAuthSuccess}
-        onLogout={handleLogout}
-      />
-      <Hero />
-      <HowItWorks />
-      <Features />
-      <Battle />
-      <Leaderboard />
-      <Skills />
-      <Testimonials />
-      <CTA />
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen">
+        <Routes>
+          <Route
+            path="/"
+            element={(
+              <>
+                <Navbar {...navbarProps} />
+                <Hero />
+                <HowItWorks />
+                <Features />
+                <Battle />
+                <Leaderboard />
+                <Skills />
+                <Testimonials />
+                <CTA />
+                <Footer />
+              </>
+            )}
+          />
+          <Route path="/dsa" element={<DSA theme={theme} onThemeToggle={toggleTheme} />} />
+          <Route path="/coding-league" element={<CodingLeague theme={theme} onThemeToggle={toggleTheme} />} />
+          <Route path="/leaderboard" element={<LeaderboardPage theme={theme} onThemeToggle={toggleTheme} />} />
+          <Route path="/ai-debug" element={<AIDebugMode theme={theme} onThemeToggle={toggleTheme} />} />
+          <Route path="/battle" element={<BattlePage theme={theme} onThemeToggle={toggleTheme} />} />
+        </Routes>
+      </div>
+    </Router>
   )
 }
 
