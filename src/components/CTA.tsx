@@ -10,7 +10,7 @@ export default function CTA() {
     >
       <div className="max-w-2xl mx-auto px-10 text-center relative z-10">
         <span className="font-mono text-xs font-bold uppercase tracking-wider text-ca-dark-gold block mb-4.5">
-          JOIN THE ARENA
+          JOIN THE CODING LEAGUE
         </span>
         <h2 className="text-5xl font-black leading-tight tracking-tight text-white mb-4.5">
           Your streak<br />

@@ -12,7 +12,7 @@ export default function Leaderboard() {
         {/* Left side */}
         <div>
           <div className="section-eyebrow reveal">LEADERBOARD</div>
-          <h2 className="text-4xl font-black leading-tight tracking-tight text-ca-dark-ink mb-3.5 reveal">
+          <h2 className="text-4xl font-black leading-tight tracking-tight text-ca-dark-ink mb-3.5 reveal section-title">
             Your rank.<br />
             Your reputation.
           </h2>
@@ -28,7 +28,7 @@ export default function Leaderboard() {
             </div>
             <div className="flex items-center gap-3 p-2.5 rounded bg-ca-dark-white border border-ca-dark-bg2">
               <span className="font-mono text-xs font-bold uppercase">ARCHITECT</span>
-              <span className="font-mono text-xs text-gray-500">Top 20%. Access to system design arena.</span>
+              <span className="font-mono text-xs text-gray-500">Top 20%. Access to system design Coding League.</span>
             </div>
             <div className="flex items-center gap-3 p-2.5 rounded bg-ca-dark-white border border-ca-dark-bg2">
               <span className="font-mono text-xs font-bold uppercase">DEBUGGER</span>

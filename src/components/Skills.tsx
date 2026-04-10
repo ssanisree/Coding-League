@@ -16,7 +16,7 @@ export default function Skills() {
           {/* Left side */}
           <div>
             <div className="section-eyebrow reveal">SKILL MAP + AI HINTS</div>
-            <h2 className="text-4xl font-black leading-tight tracking-tight text-ca-dark-ink mb-3.5 reveal">
+            <h2 className="text-4xl font-black leading-tight tracking-tight text-ca-dark-ink mb-3.5 reveal section-title">
               Learn <span className="text-ca-dark-gold">smart</span>,<br />
               not just hard.
             </h2>

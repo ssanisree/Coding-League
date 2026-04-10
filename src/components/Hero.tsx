@@ -37,14 +37,14 @@ export default function Hero() {
           </div>
 
           {/* Heading */}
-          <h1 className="text-6xl font-black leading-tight tracking-tight mb-6 reveal" style={{ color: 'var(--ink)' }}>
+          <h1 className="text-6xl font-black leading-tight tracking-tight mb-6 reveal hero-title" style={{ color: 'var(--ink)' }}>
             Code.<br />
             Compete.<br />
             <span style={{ color: 'var(--gold)' }}>Conquer.</span>
           </h1>
 
           {/* Description */}
-          <p className="font-mono text-sm leading-relaxed max-w-xs mb-9 reveal" style={{ color: 'var(--muted)' }}>
+          <p className="font-mono text-sm leading-relaxed max-w-xs mb-9 reveal" style={{ color: 'var(--ink)' }}>
             The gamified coding platform built for college students.
             Real-time 1v1 battles, AI-powered hints, streak tracking,
             and a leaderboard that actually means something.
@@ -52,7 +52,7 @@ export default function Hero() {
 
           {/* Buttons */}
           <div className="flex gap-3.5 items-center mb-10 reveal">
-            <button className="btn-primary">Enter the Arena ↗</button>
+            <button className="btn-primary">Enter the Coding League ↗</button>
             <a href="#features" className="btn-ghost">See Features</a>
           </div>
 

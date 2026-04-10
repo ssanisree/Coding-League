@@ -26,7 +26,7 @@ export default function Testimonials() {
   return (
     <section className="max-w-6xl mx-auto px-10 py-20 relative z-10">
       <div className="section-eyebrow reveal">WHAT CODERS SAY</div>
-      <h2 className="text-4xl font-black leading-tight tracking-tight text-ca-dark-ink mb-10 reveal">
+      <h2 className="text-4xl font-black leading-tight tracking-tight text-ca-dark-ink mb-10 reveal section-title">
         Trusted by students<br />who ship code.
       </h2>
 

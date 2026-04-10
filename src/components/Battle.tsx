@@ -21,7 +21,7 @@ export default function Battle() {
         {/* Left side */}
         <div>
           <div className="section-eyebrow">1V1 BATTLE MODE</div>
-          <h2 className="text-4xl font-black leading-tight tracking-tight text-white mb-4">
+          <h2 className="text-4xl font-black leading-tight tracking-tight text-white mb-4 section-title">
             Real code.<br />
             Real stakes.<br />
             <span className="text-ca-dark-gold">Real winner.</span>

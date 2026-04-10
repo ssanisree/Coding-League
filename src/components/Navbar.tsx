@@ -21,13 +21,13 @@ export default function Navbar({ theme, onThemeToggle }: NavbarProps) {
         <div className="max-w-7xl mx-auto px-10 h-full flex items-center justify-between gap-5">
           {/* Logo */}
           <a href="#" className="font-mono text-base font-bold flex-shrink-0" style={{ color: 'var(--gold)' }}>
-            Code<span style={{ color: 'var(--white)' }}>Arena</span>
+            Coding<span style={{ color: '#FFFFFF' }}>League</span>
           </a>
 
           {/* Nav Links */}
           <ul className="hidden md:flex items-center gap-7 list-none">
             <li><a href="#skills" className="font-mono text-xs font-semibold uppercase tracking-wider transition-colors hover:opacity-100" style={{ color: 'var(--nav-link)' }}>DSA</a></li>
-            <li><a href="#battle" className="font-mono text-xs font-semibold uppercase tracking-wider transition-colors hover:opacity-100" style={{ color: 'var(--nav-link)' }}>1v1 Arena</a></li>
+            <li><a href="#battle" className="font-mono text-xs font-semibold uppercase tracking-wider transition-colors hover:opacity-100" style={{ color: 'var(--nav-link)' }}>1v1 Coding League</a></li>
             <li><a href="#leaderboard" className="font-mono text-xs font-semibold uppercase tracking-wider transition-colors hover:opacity-100" style={{ color: 'var(--nav-link)' }}>Leaderboard</a></li>
             <li><a href="#ai-debug" className="font-mono text-xs font-semibold uppercase tracking-wider transition-colors hover:opacity-100" style={{ color: 'var(--nav-link)' }}>AI Debug Mode</a></li>
           </ul>

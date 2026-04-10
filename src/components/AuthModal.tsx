@@ -32,10 +32,10 @@ export function AuthModal({ mode, onClose, onSwitchMode }: AuthModalProps) {
 
         {/* Logo */}
         <div className="font-mono text-base font-bold text-ca-dark-gold mb-1">
-          Code<span className="text-ca-muted">Arena</span>
+          Coding<span className="text-ca-muted">League</span>
         </div>
         <div className="font-mono text-xs text-ca-muted mb-7">
-          {currentMode === 'login' ? 'Welcome back. Enter the arena.' : 'Join the arena.'}
+          {currentMode === 'login' ? 'Welcome back. Enter the Coding League.' : 'Join the Coding League.'}
         </div>
 
         {/* Tabs */}

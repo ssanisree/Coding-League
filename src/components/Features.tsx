@@ -8,7 +8,7 @@ export default function Features() {
     },
     {
       icon: '🗺',
-      title: 'DSA Skill Map',
+      title: 'DSA Problem Recommender',
       desc: '24 topics — Arrays to Tries. Adaptive learning path unlocks as you progress. Never wonder what to study next.',
       accent: 'border-t-4 border-ca-dark-green',
     },
@@ -41,7 +41,7 @@ export default function Features() {
   return (
     <section className="max-w-6xl mx-auto px-10 py-20 relative z-10" id="features">
       <div className="section-eyebrow reveal">FEATURES</div>
-      <h2 className="text-4xl font-black leading-tight tracking-tight text-ca-dark-ink mb-3.5 reveal">
+      <h2 className="text-4xl font-black leading-tight tracking-tight text-ca-dark-ink mb-3.5 reveal section-title">
         Everything you need.<br />Nothing you don't.
       </h2>
       <p className="font-mono text-sm text-gray-500 leading-relaxed max-w-lg mb-10 reveal">

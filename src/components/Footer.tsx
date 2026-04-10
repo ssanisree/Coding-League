@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer className="bg-ca-dark-bg border-t border-ca-dark-bg2 px-10 py-9 flex items-center justify-between">
       <div className="font-mono text-base font-bold text-ca-dark-gold">
-        Code<span className="text-gray-600">Arena</span>
+        Coding<span className="text-gray-600">League</span>
       </div>
 
       <ul className="flex gap-6 list-none">
@@ -40,7 +40,7 @@ export default function Footer() {
         </li>
       </ul>
 
-      <div className="font-mono text-xs text-gray-700">© 2026 CodeArena. Built for coders.</div>
+      <div className="font-mono text-xs text-gray-700">© 2026 Coding League. Built for coders.</div>
     </footer>
   )
 }

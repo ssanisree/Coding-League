@@ -25,7 +25,7 @@ export default function HowItWorks() {
   return (
     <section className="max-w-6xl mx-auto px-10 py-20 relative z-10">
       <div className="section-eyebrow reveal">HOW IT WORKS</div>
-      <h2 className="text-4xl font-black leading-tight tracking-tight text-ca-dark-ink mb-3.5 reveal">
+      <h2 className="text-4xl font-black leading-tight tracking-tight text-ca-dark-ink mb-3.5 reveal section-title">
         From beginner to champion<br />in four steps.
       </h2>
 
