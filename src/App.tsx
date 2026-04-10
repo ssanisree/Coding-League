@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -19,27 +19,29 @@ import BattlePage from './pages/BattlePage'
 import DashboardPage from './pages/DashboardPage'
 
 function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
-
-  useEffect(() => {
-    // Set initial theme from localStorage or default to dark
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
-    const initialTheme = savedTheme || 'dark'
+    return savedTheme || 'dark'
+  })
+  const [user, setUser] = useState<User | null>(() => {
+    const savedUser = localStorage.getItem('coding-league-user')
+    if (!savedUser) return null
 
-    setTheme(initialTheme)
-    document.documentElement.setAttribute('data-theme', initialTheme)
-    document.documentElement.style.colorScheme = initialTheme
-  }, [])
+    try {
+      return JSON.parse(savedUser) as User
+    } catch {
+      localStorage.removeItem('coding-league-user')
+      return null
+    }
+  })
 
   useEffect(() => {
-    // Update data-theme attribute when theme changes
     document.documentElement.setAttribute('data-theme', theme)
     document.documentElement.style.colorScheme = theme
     localStorage.setItem('theme', theme)
   }, [theme])
 
   useEffect(() => {
-    // Intersection Observer for reveal animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -60,24 +62,47 @@ function App() {
     setTheme(newTheme)
   }
 
+  const handleAuthSuccess = (nextUser: User, token: string) => {
+    setUser(nextUser)
+    localStorage.setItem('coding-league-user', JSON.stringify(nextUser))
+    localStorage.setItem('coding-league-token', token)
+  }
+
+  const handleLogout = () => {
+    setUser(null)
+    localStorage.removeItem('coding-league-user')
+    localStorage.removeItem('coding-league-token')
+  }
+
+  const navbarProps = {
+    theme,
+    user,
+    onThemeToggle: toggleTheme,
+    onAuthSuccess: handleAuthSuccess,
+    onLogout: handleLogout,
+  }
+
   return (
     <Router>
       <div className="min-h-screen">
         <Routes>
-          <Route path="/" element={
-            <>
-              <Navbar theme={theme} onThemeToggle={toggleTheme} />
-              <Hero />
-              <HowItWorks />
-              <Features />
-              <Battle />
-              <Leaderboard />
-              <Skills />
-              <Testimonials />
-              <CTA />
-              <Footer />
-            </>
-          } />
+          <Route
+            path="/"
+            element={(
+              <>
+                <Navbar {...navbarProps} />
+                <Hero />
+                <HowItWorks />
+                <Features />
+                <Battle />
+                <Leaderboard />
+                <Skills />
+                <Testimonials />
+                <CTA />
+                <Footer />
+              </>
+            )}
+          />
           <Route path="/dsa" element={<DSA theme={theme} onThemeToggle={toggleTheme} />} />
           <Route path="/coding-league" element={<CodingLeague theme={theme} onThemeToggle={toggleTheme} />} />
           <Route path="/leaderboard" element={<LeaderboardPage theme={theme} onThemeToggle={toggleTheme} />} />

@@ -2,7 +2,6 @@ import Navbar from '../components/Navbar'
 import { useState } from 'react'
 
 export default function AIDebugMode({ theme, onThemeToggle }: { theme: 'light' | 'dark'; onThemeToggle: () => void }) {
-  const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [showThinkingLog, setShowThinkingLog] = useState(true)
 
   const code = `class DataProcessor:

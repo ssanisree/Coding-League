@@ -6,8 +6,9 @@ export function HeroThreeJSScene() {
 
   useEffect(() => {
     if (!containerRef.current) return
+    const container = containerRef.current
 
-    const heroSection = containerRef.current.closest('section')
+    const heroSection = container.closest('section')
     if (!heroSection) return
 
     const rowCount = 20
@@ -24,7 +25,7 @@ export function HeroThreeJSScene() {
 
     const scene = new THREE.Scene()
 
-    containerRef.current.appendChild(renderer.domElement)
+    container.appendChild(renderer.domElement)
 
     const geometry = new THREE.BoxGeometry(1, 1, 1)
 
@@ -116,9 +117,8 @@ export function HeroThreeJSScene() {
 
     window.addEventListener('load', syncSize)
     window.addEventListener('resize', syncSize)
-    if (window.ResizeObserver) {
-      new ResizeObserver(syncSize).observe(heroSection)
-    }
+    const resizeObserver = window.ResizeObserver ? new ResizeObserver(syncSize) : null
+    resizeObserver?.observe(heroSection)
     syncSize()
 
     function animate(ts: number) {
@@ -133,9 +133,10 @@ export function HeroThreeJSScene() {
     return () => {
       window.removeEventListener('load', syncSize)
       window.removeEventListener('resize', syncSize)
+      resizeObserver?.disconnect()
       renderer.dispose()
-      if (containerRef.current?.contains(renderer.domElement)) {
-        containerRef.current.removeChild(renderer.domElement)
+      if (container.contains(renderer.domElement)) {
+        container.removeChild(renderer.domElement)
       }
     }
   }, [])
